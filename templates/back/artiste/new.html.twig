@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Artiste{% endblock %}
+
+{% block body %}
+    <a class="text-white fs-3 position-absolute ms-3" href="{{ path('app_artiste_index') }}"><i class="fas fa-arrow-alt-circle-left"></i></a>
+
+    <h1 class="text-center">Créer un nouvel Artiste</h1>
+
+    {{ include('back/artiste/_form.html.twig') }}
+
+{% endblock %}

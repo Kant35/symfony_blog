@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Film{% endblock %}
+
+{% block body %}
+    <a href="{{ path('app_film_index') }}" class="text-white fs-3 position-absolute ms-3"><i class="fas fa-arrow-alt-circle-left"></i></a>
+
+    <h1 class="text-center">Nouveau Film</h1>
+
+    {{ include('back/film/_form.html.twig') }}
+
+{% endblock %}

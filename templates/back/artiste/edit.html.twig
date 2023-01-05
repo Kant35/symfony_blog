@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Artiste{% endblock %}
+
+{% block body %}
+    <a class="text-white fs-3 position-absolute ms-3" href="{{ path('app_artiste_index') }}"><i class="fas fa-arrow-alt-circle-left"></i></a>
+
+    <h1 class="text-center">Modifier Artiste</h1>
+
+    {{ include('back/artiste/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    {{ include('back/artiste/_delete_form.html.twig') }}
+{% endblock %}

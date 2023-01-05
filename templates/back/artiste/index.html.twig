@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Artiste index{% endblock %}
+
+{% block body %}
+
+    <a class="text-success fs-4 position-absolute end-0 me-3" href="{{ path('app_artiste_new') }}">Nouvel Artiste</a>
+
+    <h1 class="text-center">Liste des Artistes</h1>
+
+    <table class="table text-white text-center">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Photo</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for artiste in artistes %}
+            <tr>
+                <td>{{ artiste.id }}</td>
+                <td>{{ artiste.nom }}</td>
+                <td>{{ artiste.prenom }}</td>
+                <td><img src="{{ vich_uploader_asset(artiste) }}" alt="" width="100px"></td>
+                {# <td><img src="{{ asset('images/artistes/') ~ artiste.photo }}" alt="" width="100px"></td> #}
+                <td>
+                    <a href="{{ path('app_artiste_show', {'id': artiste.id}) }}">show</a>
+                    <a href="{{ path('app_artiste_edit', {'id': artiste.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Aucun Artiste trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

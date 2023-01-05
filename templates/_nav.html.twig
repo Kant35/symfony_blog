@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ path('app_index')}}"><span class="badge bg-warning fs-4 p-2 text-dark">IMDb</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="">Tous les films</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_artistes') }}">Tous les artistes</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav d-flex">
+
+                {% if app.user %}
+                    {# Je suis connecté #}
+
+                    {% if 'ROLE_ADMIN' in app.user.roles %}
+                        {# Et je suis Admin #}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_artiste_index') }}">Artiste Admin</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_film_index') }}">Film Admin</a>
+                        </li>
+                    {% endif %}
+
+                    {% if 'ROLE_PDG' in app.user.roles %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="">Virer Employer</a>
+                        </li>
+                    {% endif %}
+
+                    <li class="nav-item">
+                        <a class="nav-link text-danger" href="{{ path('app_logout') }}">Déconnexion</a>
+                    </li>
+
+                {% else %}
+                    {# Je ne suis pas connecté #}
+                    <li class="nav-item">
+                        <a class="nav-link text-warning" href="{{ path('app_subscribe') }}">Inscription</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+                    </li>
+                {% endif %}
+
+
+            </ul>
+        </div>
+    </div>
+</nav>

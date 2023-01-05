@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Film index{% endblock %}
+
+{% block body %}
+    <a href="{{ path('app_film_new') }}" class="text-success fs-4 position-absolute end-0 me-3">Nouveau Film</a>
+
+    <h1 class="text-center">Liste Films</h1>
+
+    <table class="table text-white text-center">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Date de Sortie</th>
+                <th>Affiche</th>
+                <th>Synopsis</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for film in films %}
+            <tr>
+                <td>{{ film.id }}</td>
+                <td>{{ film.titre|capitalize }}</td>
+                <td>{{ film.dateSortie ? film.dateSortie|date('d M Y') : '' }}</td>
+                <td><img src="{{ vich_uploader_asset(film) }}" alt="" width="100px"></td>
+                <td>{{ film.synopsis }}</td>
+                <td>
+                    <a href="{{ path('app_film_show', {'id': film.id}) }}">show</a>
+                    <a href="{{ path('app_film_edit', {'id': film.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Aucun Film trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
